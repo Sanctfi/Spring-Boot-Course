@@ -18,6 +18,7 @@ public class User {
     @Size(min = 2, message = "Last name must be at least 2 characters in length")
     private String lastName;
 
+    @Username(message = "Username cannot contain special characters or uppercase")
     @NotBlank(message = "Username cannot be blank")
     @Size(min = 7, message = "Username must be at least 7 characters in length")
     private String userName;
@@ -26,6 +27,7 @@ public class User {
     @Email(message = "Must enter a valid email addresss")
     private String email;
 
+    @Age(message = "Must be at least 18 years old")
     @Past(message = "Date of birth must be a previous date")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dateOfBirth;
