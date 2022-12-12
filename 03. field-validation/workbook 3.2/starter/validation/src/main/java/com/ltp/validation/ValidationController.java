@@ -19,8 +19,8 @@ public class ValidationController {
 
     @PostMapping("/submitItem")
     public String handleSubmit(@Valid User user, BindingResult result) {
+        if (user.getFirstName().equals(user.getLastName())) result.rejectValue("lastName", "", "Please enter valid names");
         if (result.hasErrors()) return "sign-up";
-        
         return "redirect:/result";
     }
 
