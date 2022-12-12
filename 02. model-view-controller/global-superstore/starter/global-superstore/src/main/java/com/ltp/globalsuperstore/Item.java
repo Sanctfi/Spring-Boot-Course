@@ -1,18 +1,18 @@
 package com.ltp.globalsuperstore;
 
-import java.sql.Date;
-import java.util.Set;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.UUID;
 
-import com.fasterxml.jackson.databind.ser.std.UUIDSerializer;
+import org.springframework.format.annotation.DateTimeFormat;
 
 public class Item {
     private String category;
     private String name;
     private Double price;
     private Double discount;
-    private Date date;
     private String id;
+    @DateTimeFormat(pattern = "yyyy-MM-dd") private Date date;
 
     public Item(String category, String name, Double price, Double discount, Date date) {
         this.category = category;

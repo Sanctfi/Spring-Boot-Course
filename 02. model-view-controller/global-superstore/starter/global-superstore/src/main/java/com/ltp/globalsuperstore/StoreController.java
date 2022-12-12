@@ -1,6 +1,6 @@
 package com.ltp.globalsuperstore;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -43,7 +43,7 @@ public class StoreController {
         } else {
             status = Constants.FAILED_STATUS;
         }
-
+        // println below is just for testing purposes to see the inventory printed out in console
         System.out.println(inventory.toString());
         redirectAttributes.addFlashAttribute("status", status);
         return "redirect:/inventory";
