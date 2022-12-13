@@ -11,20 +11,19 @@ import com.ltp.globalsuperstore.repository.StoreRepository;
 public class StoreService {
     
     StoreRepository storeRepository = new StoreRepository();
-    String status = Constants.SUCCESS_STATUS;
 
-    public void submitItem(Item item) {
+    public String submitItem(Item item) {
         int index = getIndexFromId(item.getId());
+        String status = Constants.SUCCESS_STATUS;
 
         if (index == Constants.NOT_FOUND) {
             storeRepository.addItem(item);
-            status = Constants.SUCCESS_STATUS;
         } else if (within5Days(item.getDate(), storeRepository.getItem(index).getDate())) {
             storeRepository.updateItem(index, item);
-            status = Constants.SUCCESS_STATUS;
         } else {
             status = Constants.FAILED_STATUS;
         }
+        return status;
     }
 
     public Item getItemById(String id) {
@@ -42,11 +41,7 @@ public class StoreService {
         }
         return Constants.NOT_FOUND;
     }
-
-    public String getStatus() {
-        return status;
-    }
-
+    
     public boolean within5Days(Date newDate, Date oldDate) {
         long diff = Math.abs(newDate.getTime() - oldDate.getTime());
         return (int) (TimeUnit.MILLISECONDS.toDays(diff)) <= 5;

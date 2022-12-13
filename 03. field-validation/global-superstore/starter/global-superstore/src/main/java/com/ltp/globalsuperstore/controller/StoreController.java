@@ -31,8 +31,8 @@ public class StoreController {
         if (item.getDate() == null) result.rejectValue("date", "", "Must select a date");
         if (result.hasErrors()) return "form";
 
-        storeService.submitItem(item);
-        redirectAttributes.addFlashAttribute("status", storeService.getStatus());
+        String status = storeService.submitItem(item);
+        redirectAttributes.addFlashAttribute("status", status);
         return "redirect:/inventory";
     }
 
