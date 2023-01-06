@@ -6,6 +6,7 @@ import java.util.stream.IntStream;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ltp.contacts.exception.ContactNotFoundException;
 import com.ltp.contacts.pojo.Contact;
 import com.ltp.contacts.repository.ContactRepository;
 
@@ -45,7 +46,7 @@ public class ContactServiceImpl implements ContactService {
         return IntStream.range(0, contactRepository.getContacts().size())
             .filter(index -> contactRepository.getContacts().get(index).getId().equals(id))
             .findFirst()
-            .orElseThrow();
+            .orElseThrow(() -> new ContactNotFoundException(id));
     }
 
 }
