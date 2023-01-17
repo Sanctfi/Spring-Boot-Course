@@ -10,6 +10,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
+import com.ltp.gradesubmission.validation.Score;
+
 import lombok.*;
 @Getter
 @Setter
@@ -27,6 +29,7 @@ public class Grade {
     @Column(name = "id")
     private Long id;
     
+    @Score
     @Column(name = "score", nullable = false)
     private String score;    
 
